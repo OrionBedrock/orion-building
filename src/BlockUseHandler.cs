@@ -1,6 +1,6 @@
 using Orion;
 using Orion.Block.Traits.Types;
-using Orion.Events;
+using Orion.Api.Events;
 using Orion.Gameplay;
 using Orion.Item;
 using Orion.Item.Traits.Types;
@@ -9,6 +9,7 @@ using Orion.Protocol.Enums;
 using Orion.Protocol.Packets;
 using Orion.Protocol.Types;
 using Orion.World;
+using ApiBlockPos = Orion.Api.Math.BlockPos;
 
 namespace OrionBuilding;
 
@@ -210,7 +211,10 @@ internal static class BlockUseHandler
         Server? server = player.Dimension.World?.Server as Server;
         if (server is not null)
         {
-            PlayerPlaceBlockSignal signal = new(player, placePosition, clickedFace);
+            PlayerPlaceBlockSignal signal = new(
+                player,
+                new ApiBlockPos(placePosition.X, placePosition.Y, placePosition.Z),
+                clickedFace);
             server.Emit(signal);
             if (!signal.Emit())
             {
