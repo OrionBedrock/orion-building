@@ -221,7 +221,7 @@ internal static class BlockUseHandler
                 SendBlockUpdate(player, placePosition, existingBlock.NetworkId);
                 if (inventory is not null)
                 {
-                    ItemStack? rollbackItem = inventory.Container.GetItem(transaction.HotBarSlot);
+                    ItemStack? rollbackItem = inventory.Container.GetItem(transaction.HotBarSlot) as ItemStack;
                     if (rollbackItem is not null)
                     {
                         inventory.Container.SetItem(transaction.HotBarSlot, rollbackItem.Clone());
@@ -375,7 +375,7 @@ internal static class BlockUseHandler
 
         inventory.SetHeldSlot(hotBarSlot);
 
-        ItemStack? heldItem = inventory.GetHeldItem();
+        ItemStack? heldItem = inventory.GetHeldItem() as ItemStack;
         return heldItem is null || heldItem.StackSize == 0 ? null : heldItem;
     }
 
