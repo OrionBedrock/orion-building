@@ -1,7 +1,6 @@
 {
   "id": "orion:building",
   "version": "1.0.0",
-  "api": "0.1.0",
   "description": "Block place / item-use-on-block (opt-in). Soft-depends on inventory for survival consume.",
   "authors": ["Orion"],
   "main": "OrionBuilding.OrionBuildingPlugin",
